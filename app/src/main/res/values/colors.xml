@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand palette (Material 3 friendly) -->
+    <color name="seed">#FF5B4FE5</color>
+    <color name="primary">#FF5B4FE5</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="primary_container">#FFE3E0FF</color>
+    <color name="on_primary_container">#FF120065</color>
+    <color name="secondary">#FF00A884</color>
+    <color name="surface">#FFFDFBFF</color>
+    <color name="surface_variant">#FFE9E7F2</color>
+
+    <!-- Legacy names kept for compatibility -->
+    <color name="purple_500">#FF5B4FE5</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>

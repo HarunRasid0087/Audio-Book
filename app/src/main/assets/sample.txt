@@ -1,0 +1,5 @@
+Welcome to Offline Reader.
+
+This is a sample document. Open this file or paste your own text, then press Play to hear it read aloud using your device's built-in voice. Everything runs offline once your language's voice data is installed.
+
+Use the Speed and Pitch sliders to make the narration comfortable for you. Enjoy your reading.

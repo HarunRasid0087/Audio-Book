@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Offline Reader</string>
+
+    <!-- File / input -->
+    <string name="open_file">Open Text File</string>
+    <string name="open_file_multi">Open Document</string>
+    <string name="hint_text">Paste or type text here, or open a TXT / PDF / EPUB file…</string>
+    <string name="parsing">Reading document…</string>
+    <string name="parse_failed">Could not read file: %1$s</string>
+    <string name="loaded_file">Loaded: %1$s</string>
+    <string name="no_document">No document loaded</string>
+
+    <!-- Playback -->
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="stop">Stop</string>
+    <string name="prev">Previous</string>
+    <string name="next">Next</string>
+
+    <!-- Status -->
+    <string name="initializing">Initializing engine…</string>
+    <string name="engine_ready">Engine ready. Open a file or type text.</string>
+    <string name="engine_failed">TTS engine failed to start.</string>
+    <string name="finished">Finished reading.</string>
+    <string name="stopped">Stopped.</string>
+    <string name="paused">Paused — tap Resume to continue.</string>
+    <string name="empty_text">Please enter or load some text first.</string>
+    <string name="reading_progress">Reading %1$d / %2$d</string>
+    <string name="progress_percent">%1$d%%</string>
+    <string name="ocr_progress">Scanning page %1$d of %2$d (OCR)…</string>
+    <string name="ocr_notice">No text layer found — running OCR. This may take a moment.</string>
+    <string name="resumed_session">Restored “%1$s” — tap Play to continue.</string>
+
+    <!-- Controls -->
+    <string name="speed_label">Speed: %1$.1fx</string>
+    <string name="pitch_label">Pitch: %1$.1fx</string>
+    <string name="speed_default">Speed: 1.0x</string>
+    <string name="pitch_default">Pitch: 1.0x</string>
+    <string name="language_label">Language</string>
+    <string name="voice_label">Voice</string>
+    <string name="default_voice">Default voice</string>
+
+    <!-- Sleep timer -->
+    <string name="sleep_timer">Sleep timer</string>
+    <string name="sleep_off">Off</string>
+    <string name="sleep_set">Sleep timer: stopping in %1$d min</string>
+    <string name="sleep_fired">Sleep timer reached — playback stopped.</string>
+
+    <!-- Sections -->
+    <string name="section_voice">Voice &amp; Language</string>
+    <string name="section_controls">Playback Controls</string>
+
+    <!-- Notification -->
+    <string name="channel_name">Playback</string>
+    <string name="channel_desc">Controls for the document being read aloud</string>
+    <string name="notif_reading">Reading aloud</string>
+</resources>
