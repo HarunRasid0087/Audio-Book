@@ -52,7 +52,7 @@ dependencies {
     implementation("com.tom-roush:pdfbox-android:2.0.27.0")
 
     // EPUB parsing (offline) + HTML stripping
-    implementation("com.github.psiegman:epublib:epublib-3.1") {
+    implementation("com.github.psiegman.epublib:epublib-core:epublib-3.1") {
         exclude(group = "org.slf4j")
         exclude(group = "xmlpull")
     }
