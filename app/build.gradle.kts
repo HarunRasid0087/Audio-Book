@@ -51,15 +51,9 @@ dependencies {
     // PDF text extraction (offline, pure-JVM port of Apache PDFBox)
     implementation("com.tom-roush:pdfbox-android:2.0.27.0")
 
-    // EPUB parsing (offline) + HTML stripping
-    // NOTE: JitPack reported `Tag or commit 'epublib-3.1' not found` — the previous
-    // version string was invalid. Pinned to a commit hash, which JitPack always resolves.
-    // To use a release tag instead, replace the version with a tag that exists in the repo.
-    implementation("com.github.psiegman:epublib:645a3e4") {
-        exclude(group = "org.slf4j")
-        exclude(group = "xmlpull")
-    }
-    implementation("org.slf4j:slf4j-android:1.7.36")
+    // EPUB parsing is handled in-app by EpubExtractor (java.util.zip + Jsoup).
+    // We intentionally avoid the JitPack `epublib` dependency because building it
+    // from a commit hash is unreliable in CI and frequently breaks the build.
     implementation("org.jsoup:jsoup:1.17.2")
 
     // OCR for scanned/image-only PDFs (bundled model = fully offline)

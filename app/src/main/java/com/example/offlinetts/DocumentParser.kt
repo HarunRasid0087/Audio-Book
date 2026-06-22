@@ -5,8 +5,6 @@ import android.net.Uri
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 import com.tom_roush.pdfbox.pdmodel.PDDocument
 import com.tom_roush.pdfbox.text.PDFTextStripper
-import nl.siegmann.epublib.epub.EpubReader
-import org.jsoup.Jsoup
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -16,8 +14,8 @@ import java.io.InputStreamReader
  * Detects the file type from its display name (extension) or MIME type and
  * extracts plain text suitable for the TTS engine. Supports:
  *   - .txt  (and any UTF-8 text-like file)
- *   - .pdf  (via PDFBox-Android)
- *   - .epub (via epublib + Jsoup for HTML stripping)
+ *   - .pdf  (via PDFBox-Android, with OCR fallback for scanned PDFs)
+ *   - .epub (via the in-app EpubExtractor — no external JitPack dependency)
  */
 object DocumentParser {
 
@@ -96,21 +94,7 @@ object DocumentParser {
 
     private fun extractEpub(context: Context, uri: Uri): String {
         context.contentResolver.openInputStream(uri)?.use { input ->
-            val book = EpubReader().readEpub(input)
-            val sb = StringBuilder()
-            for (resource in book.contents) {
-                try {
-                    val html = String(resource.data, Charsets.UTF_8)
-                    val text = Jsoup.parse(html).text()
-                    if (text.isNotBlank()) sb.append(text).append("\n\n")
-                } catch (_: Exception) {
-                    // Skip non-text resources (images, fonts, css).
-                }
-            }
-            if (sb.isBlank()) {
-                throw IllegalStateException("No readable text found in this EPUB.")
-            }
-            return sb.toString()
+            return EpubExtractor.extract(input)
         } ?: throw IllegalStateException("Could not open the EPUB file.")
     }
 

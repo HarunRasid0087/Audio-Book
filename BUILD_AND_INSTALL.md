@@ -12,7 +12,7 @@ No internet, no servers, no accounts.
 ```
 AudioBook App/
 ├── app/
-│   ├── build.gradle.kts                 # deps: pdfbox-android, epublib, jsoup, mlkit, media
+│   ├── build.gradle.kts                 # deps: pdfbox-android, jsoup, mlkit, media
 │   ├── proguard-rules.pro
 │   └── src/main/
 │       ├── AndroidManifest.xml
@@ -21,6 +21,7 @@ AudioBook App/
 │       │   ├── MainActivity.kt          # UI + wiring, progress, skip, sleep timer, resume
 │       │   ├── TtsManager.kt            # offline TTS wrapper: chunking, pause/skip/resume
 │       │   ├── DocumentParser.kt        # TXT / PDF / EPUB → plain text (offline)
+        │   │   ├── EpubExtractor.kt         # self-contained EPUB (ZIP) parser, no JitPack dep
 │       │   ├── OcrHelper.kt             # ML Kit OCR fallback for scanned PDFs
 │       │   ├── PlaybackService.kt       # foreground media service + lock-screen controls
 │       │   └── ReaderPrefs.kt           # persists session + settings (SharedPreferences)
@@ -43,7 +44,7 @@ AudioBook App/
 ---
 
 ## ✨ Features
-- **Multi-format input:** TXT, **PDF** (via PDFBox-Android), **EPUB** (via epublib + Jsoup).
+- **Multi-format input:** TXT, **PDF** (via PDFBox-Android), **EPUB** (via the built-in EpubExtractor + Jsoup — no external EPUB lib).
 - **OCR fallback:** scanned/image-only PDFs are recognised on-device with
   **ML Kit** (bundled model — still 100% offline).
 - **Language picker:** lists every language your TTS engine has installed.
