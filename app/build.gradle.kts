@@ -52,7 +52,10 @@ dependencies {
     implementation("com.tom-roush:pdfbox-android:2.0.27.0")
 
     // EPUB parsing (offline) + HTML stripping
-    implementation("com.github.psiegman.epublib:epublib-core:epublib-3.1") {
+    // NOTE: JitPack reported `Tag or commit 'epublib-3.1' not found` — the previous
+    // version string was invalid. Pinned to a commit hash, which JitPack always resolves.
+    // To use a release tag instead, replace the version with a tag that exists in the repo.
+    implementation("com.github.psiegman:epublib:645a3e4") {
         exclude(group = "org.slf4j")
         exclude(group = "xmlpull")
     }
