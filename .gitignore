@@ -8,3 +8,9 @@
 /captures/
 .externalNativeBuild/
 .cxx/
+
+# Build artifacts / local logs (not source)
+/_apk/
+*.apk
+build-errors.log
+build-errors.txt

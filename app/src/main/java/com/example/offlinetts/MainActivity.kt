@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.IBinder
 import android.speech.tts.Voice
+import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -82,14 +83,38 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        prefs = ReaderPrefs(this)
-        DocumentParser.init(this)
-        setupTts()
-        setupUi()
-        restoreSession()
-        bindPlaybackService()
-        requestNotificationPermission()
-        handleShareIntent(intent)
+        // Guard the heavy/risky startup work. If anything in here throws, we show
+        // the reason on-screen instead of letting the app vanish in a second.
+        // The exact stack trace is still saved by CrashReporter for adb pull.
+        try {
+            prefs = ReaderPrefs(this)
+            DocumentParser.init(this)
+            setupTts()
+            setupUi()
+            restoreSession()
+            bindPlaybackService()
+            requestNotificationPermission()
+            handleShareIntent(intent)
+        } catch (t: Throwable) {
+            Log.e(CrashReporter.TAG, "Startup failed in onCreate", t)
+            CrashReporter.lastCrashText(this) // ensures dir exists for later pulls
+            showStartupError(t)
+        }
+    }
+
+    /** Friendly, non-crashing fallback so a startup bug is visible, not silent. */
+    private fun showStartupError(t: Throwable) {
+        val message = getString(
+            R.string.startup_error,
+            t.javaClass.simpleName,
+            t.message ?: "no message"
+        )
+        runCatching { binding.statusText.text = message }
+        runCatching {
+            binding.playButton.isEnabled = false
+            binding.openFileButton.isEnabled = false
+        }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun bindPlaybackService() {
