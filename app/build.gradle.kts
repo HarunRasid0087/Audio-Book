@@ -58,4 +58,9 @@ dependencies {
 
     // OCR for scanned/image-only PDFs (bundled model = fully offline)
     implementation("com.google.mlkit:text-recognition:16.0.0")
+
+    // Provides com.google.android.gms.tasks.Tasks (Tasks.await) used in OcrHelper.
+    // ML Kit returns a Task, but the Tasks helper must be declared explicitly so
+    // it is guaranteed on the compile classpath in a clean CI build.
+    implementation("com.google.android.gms:play-services-tasks:18.2.0")
 }
