@@ -17,7 +17,7 @@ import java.util.zip.ZipInputStream
  *   4. Strips HTML from each spine document with Jsoup and concatenates text.
  *
  * If anything in the structured path fails, it falls back to extracting text
- * from every *.xhtml/*.html/*.htm entry in the archive (alphabetical order).
+ * from every .xhtml, .html or .htm entry in the archive (alphabetical order).
  *
  * This intentionally replaces the flaky JitPack `epublib` dependency, so the
  * build can never break on a third-party JitPack resolution failure.

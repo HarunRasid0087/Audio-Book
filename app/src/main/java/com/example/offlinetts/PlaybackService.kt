@@ -58,11 +58,11 @@ class PlaybackService : Service() {
         createChannel()
         mediaSession = MediaSessionCompat(this, "OfflineReaderSession").apply {
             setCallback(object : MediaSessionCompat.Callback() {
-                override fun onPlay() { controller?.onPlay() }
-                override fun onPause() { controller?.onPause() }
-                override fun onStop() { controller?.onStop() }
-                override fun onSkipToNext() { controller?.onSkipNext() }
-                override fun onSkipToPrevious() { controller?.onSkipPrevious() }
+                override fun onPlay() { this@PlaybackService.controller?.onPlay() }
+                override fun onPause() { this@PlaybackService.controller?.onPause() }
+                override fun onStop() { this@PlaybackService.controller?.onStop() }
+                override fun onSkipToNext() { this@PlaybackService.controller?.onSkipNext() }
+                override fun onSkipToPrevious() { this@PlaybackService.controller?.onSkipPrevious() }
             })
             isActive = true
         }
